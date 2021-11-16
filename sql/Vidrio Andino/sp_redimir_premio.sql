@@ -2,7 +2,7 @@ drop procedure if exists sp_redimir_premio;
 
 DELIMITER //
 
-create procedure sp_redimir_premio(id_usuario_p int, id_premio_p int, puntos_p int, comentarios_p varchar(100), direccion_envio_p varchar(100), id_registra_p int, ciudad_p varchar(100))
+create procedure sp_redimir_premio(id_usuario_p int, id_premio_p int, puntos_p int, comentarios_p varchar(100), direccion_envio_p VARCHAR(200), id_registra_p int, ciudad_p varchar(100))
 begin
 
 	declare puede_redimir bit;
@@ -15,7 +15,7 @@ begin
 	set @descripcion_ecu = '';
 	set @id_seguimiento_redencion = 0;
 	set @id_estado_cuenta = 0;
-	set @saldo_actual = 0;
+	set @saldo_actual = 0;	
 	
 	set puede_redimir = 1;
 	set error = '';

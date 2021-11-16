@@ -231,7 +231,6 @@ class clsEspeciales
             $ciudad = $parametros->ciudad;
             
             $query = "call sp_redimir_premio(".$id_usuario.",".$id_premio.",".$puntos.",'".$comentario."','".$direccion_envio."',".$id_registra.",'".$ciudad."');";
-            
             $resultado_redencion = clsDDBBOperations::ExecuteSelectNoParams($query);
             
             if(is_array($resultado_redencion))
