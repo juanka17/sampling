@@ -145,6 +145,7 @@ class Consultas
             red.comentarios,
             red.id id_redencion,
             seg.id id_seguimiento,
+            seg.referencia,
             ope.nombre operacion,
             concat('Ctt-',red.id) folio,
             reg.nombre registra
