@@ -8,7 +8,7 @@
         <script src="js/foundation-datepicker.js" type="text/javascript"></script>
         <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-        <script src="interfaces/estados_redencion.js" type="text/javascript"></script>
+        <script src="interfaces/estados_redencion.js?ver=2" type="text/javascript"></script>
         <script>
             var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
             var id_redencion = 0;
@@ -81,6 +81,8 @@
                                         <tr><td>7</td><td>Encuestado</td></tr>
                                         <tr><td>8</td><td>Despachado</td></tr>
                                         <tr><td>9</td><td>Garantia En Proceso</td></tr>
+                                        <tr><td>10</td><td>Devolución - Ausente</td></tr>
+                                        <tr><td>11</td><td>Devolución - No reside</td></tr>
                                     </tbody>
                                 </table>         
                                 <b>Cantidad de folios:</b> {{informacion_folios.cantidad}}
