@@ -31,7 +31,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
 
     $scope.MostrarOperacionesRedencion = function(data) {
         $scope.operaciones_redencion = data;
-        console.log($scope.operaciones_redencion);
+        $scope.CargarEncuestaRedencion();
     };
 
     $scope.nuevo_estado = { id_operacion: 0, comentario: "", referencia: "", id_registra: 0 };
@@ -104,6 +104,43 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
     };
 
     // </editor-fold>
+    $scope.RegistrarEncuestaRedencion = function() {
+        var preguntas_encuesta = Array();
+        console.log(preguntas_encuesta);
+        $("#pnlEncuesta tbody tr").each(function(index, row) {
+            if (index < 5) {
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        var parametros = {
+            catalogo: "encuesta_redencion",
+            catalogo_real: "encuesta_redencion",
+            lista_datos: preguntas_encuesta,
+            id_redencion: id_redencion
+        };
+        console.log(parametros);
+        $scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.CargarEncuestaRedencion);
+    };
+
+    $scope.CargarEncuestaRedencion = function() {
+        var parametros = { catalogo: "encuesta_redencion", id_redencion: id_redencion };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaRedencion);
+    };
+
+    $scope.encuesta_redencion = Array();
+    $scope.MostrarEncuestaRedencion = function(data) {
+        if (data.length > 0) {
+            $scope.encuesta_redencion = data;
+        }
+        console.log($scope.encuesta_redencion);
+    };
 
     $scope.EjecutarLlamado = function(modelo, operacion, parametros, CallBack) {
         $http({

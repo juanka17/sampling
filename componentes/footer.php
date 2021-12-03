@@ -1,8 +1,6 @@
 <div class="grid-container fluid" id="footer">
     <div class="grid-x">
-        <div class="cell small-12 medium-8 text-left">
-            <img  src="images/vidrio_andino.png"/>
-            <img  src="images/vidros_bienestar.png"/>            
+        <div class="cell small-12 medium-8 text-left">      
         </div>
         <div class="cell small-12 medium-4 text-right" style="color: black;">
             <br/>
