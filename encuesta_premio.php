@@ -123,6 +123,30 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>6. ¿Realizó la receta que recibió con la cajita? </td>
+                                    <td>
+                                        <select ng-hide class="form-control" value="2">
+                                            <option value="1">Si</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7. ¿Conoce la página de Nestlé? ¿Ha navegado en ella? </td>
+                                    <td>
+                                        <select ng-hide class="form-control" value="2">
+                                            <option value="1">Si</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td colspan="3" class="text-right">
                                         <button class="button small expanded" type="button"
                                             ng-click="RegistrarEncuestaRedencion()">
@@ -156,6 +180,10 @@
                                             avena y naranja con frutas como acompañamiento para KLIM® en cajita? </span>
                                         <span ng-show="pregunta.numero_pregunta == 5">¿Qué otro tipo de recetas
                                             quisieras conocer? </span>
+                                        <span ng-show="pregunta.numero_pregunta == 6">¿Realizó la receta que recibió con
+                                            la cajita?</span>
+                                        <span ng-show="pregunta.numero_pregunta == 7">¿Conoce la página de Nestlé? ¿Ha
+                                            navegado en ella?</span>
                                     </td>
                                     <td>
                                         <span ng-show="pregunta.respuesta == 0">No</span>

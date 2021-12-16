@@ -38,9 +38,11 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
     $scope.RegistrarSeguimiento = function() {
         $scope.nuevo_estado.id_redencion = id_redencion;
         $scope.nuevo_estado.id_registra = $scope.usuario_en_sesion.id;
-
-        var parametros = { catalogo: "seguimiento_redencion", datos: $scope.nuevo_estado };
-        $scope.EjecutarLlamado("especiales", "registrar_seguimiento_redencion", parametros, $scope.ResultadoRegistroSeguimiento);
+        var parametros = {
+            catalogo: "seguimiento_redencion",
+            datos: $scope.nuevo_estado
+        };
+        $scope.EjecutarLlamado("especiales", "registrar_seguimiento_redencionregistrar_seguimiento_redencion", parametros, $scope.ResultadoRegistroSeguimiento);
     };
 
     $scope.ResultadoRegistroSeguimiento = function(data) {

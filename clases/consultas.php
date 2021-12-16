@@ -366,6 +366,56 @@ class Consultas
             FROM usuarios usu
             inner JOIN almacenes alm ON alm.id = usu.id_almacen
     ";
+
+    public static $reporte_encuesta= '
+        SELECT usu.id id,
+            usu.cedula,
+            usu.nombre,
+            red.id redencion,
+            case when numero_pregunta=1 AND respuesta= 0 then "No"
+                    when numero_pregunta=1 AND  respuesta=1 then "Si"
+                    when numero_pregunta=1 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 1",
+            case when numero_pregunta=1 then enc.comentario end  "comentario pregunta 1",
+            case when numero_pregunta=2 AND respuesta= 0 then "No"
+                    when numero_pregunta=2 AND  respuesta=1 then "Si"
+                    when numero_pregunta=2 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 2",
+            case when numero_pregunta=2 then enc.comentario end  "comentario pregunta 2",
+            case when numero_pregunta=3 AND respuesta= 0 then "No"
+                    when numero_pregunta=3 AND  respuesta=1 then "Si"
+                    when numero_pregunta=3 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 3",
+            case when numero_pregunta=3 then enc.comentario end  "comentario pregunta 3",
+            case when numero_pregunta=4 AND respuesta= 0 then "No"
+                    when numero_pregunta=4 AND  respuesta=1 then "Si"
+                    when numero_pregunta=4 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 4",
+            case when numero_pregunta=4 then enc.comentario end  "comentario pregunta 4",
+            case when numero_pregunta=5 AND respuesta= 0 then "No"
+                    when numero_pregunta=5 AND  respuesta=1 then "Si"
+                    when numero_pregunta=5 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 5",
+            case when numero_pregunta=5 then enc.comentario end  "comentario pregunta 5",
+            case when numero_pregunta=6 AND respuesta= 0 then "No"
+                    when numero_pregunta=6 AND  respuesta=1 then "Si"
+                    when numero_pregunta=6 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 6",
+            case when numero_pregunta=6 then enc.comentario end  "comentario pregunta 6",
+            case when numero_pregunta=7 AND respuesta= 0 then "No"
+                    when numero_pregunta=7 AND  respuesta=1 then "Si"
+                    when numero_pregunta=7 AND  respuesta=2 then "NA" 
+                    END "respuesta pregunta 7",
+            case when numero_pregunta=7 then enc.comentario end  "comentario pregunta 7"
+        FROM encuesta_redencion enc
+            INNER JOIN redenciones red ON enc.id_redencion=red.id
+            INNER JOIN usuarios usu ON usu.id=red.id_usuario
+        GROUP BY usu.cedula,
+                usu.nombre,
+                red.id,
+                enc.numero_pregunta
+        ORDER BY usu.cedula, enc.numero_pregunta
+';
 }
 
 ?>
