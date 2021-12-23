@@ -147,7 +147,10 @@ class Consultas
             seg.id id_seguimiento,
             seg.referencia,
             ope.nombre operacion,
-            concat('SPK-',red.id) folio,
+            case
+                when pre.marca='KLIM' then concat('SPK-',red.id)
+            	when pre.marca='MAGGI' then concat('SPM-',red.id)
+            end folio,
             reg.nombre registra
         from 
             redenciones red
