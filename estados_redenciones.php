@@ -8,7 +8,7 @@
         <script src="js/foundation-datepicker.js" type="text/javascript"></script>
         <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-        <script src="interfaces/estados_redencion.js" type="text/javascript"></script>
+        <script src="interfaces/estados_redencion.js?cant=tell&if=is_true&ver=2" type="text/javascript"></script>
 
         <script>
             var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;

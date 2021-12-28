@@ -42,7 +42,10 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             catalogo: "seguimiento_redencion",
             datos: $scope.nuevo_estado
         };
-        $scope.EjecutarLlamado("especiales", "registrar_seguimiento_redencionregistrar_seguimiento_redencion", parametros, $scope.ResultadoRegistroSeguimiento);
+        console.log($scope.nuevo_estado.id_redencion);
+        console.log($scope.nuevo_estado.id_registra);
+        console.log(parametros);
+        $scope.EjecutarLlamado("especiales", "registrar_seguimiento_redencion", parametros, $scope.ResultadoRegistroSeguimiento);
     };
 
     $scope.ResultadoRegistroSeguimiento = function(data) {
@@ -110,7 +113,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
         var preguntas_encuesta = Array();
         console.log(preguntas_encuesta);
         $("#pnlEncuesta tbody tr").each(function(index, row) {
-            if (index < 5) {
+            if (index < 7) {
                 var pregunta = {
                     id_redencion: id_redencion,
                     numero_pregunta: (index + 1),
