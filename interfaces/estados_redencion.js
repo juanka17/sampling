@@ -76,7 +76,15 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             var folio_correcto = true;
 
             var informacion_folio = folio.split('|');
-            if (informacion_folio.length != 4) { folio_correcto = false; } else if (!$.isNumeric(informacion_folio[0])) { folio_correcto = false; } else if (!$.isNumeric(informacion_folio[1])) { folio_correcto = false; } else if (informacion_folio[2].length > 100) { folio_correcto = false; }
+            if (informacion_folio.length != 4) {
+                folio_correcto = false;
+            } else if (!$.isNumeric(informacion_folio[0])) {
+                folio_correcto = false;
+            } else if (!$.isNumeric(informacion_folio[1])) {
+                folio_correcto = false;
+            } else if (informacion_folio[2].length > 100) {
+                folio_correcto = false;
+            }
 
             if (folio_correcto) {
                 $scope.informacion_folios.folios_correctos++;

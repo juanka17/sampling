@@ -166,6 +166,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
                                     <select ng-disabled="usuario_en_sesion.id_rol != 2" ng-model='datos_usuario.id_estado' ng-change="VerificarCambios()">
                                         <option value='1'>Activo</option>
                                         <option value='0'>Inactivo</option>
+                                        <option value='2'>Descalificado</option>
                                     </select>
                                     </label>
                             </div>
