@@ -3,33 +3,34 @@
 class Consultas
 {
     public static $consulta_usuarios = '
-        select 
-            usu.id,
-            usu.cedula,
-            usu.nombre,
-            usu.fecha_nacimiento,
-            usu.telefono,
-            usu.celular,
-            usu.direccion,
-            usu.genero,
-            usu.correo_corporativo,
-            usu.operador,
-            usu.whatsapp,
-            ciu.id id_ciudad,
-            concat(dep.nombre," - ",ciu.nombre) ciudad,
-            usu.acepto_terminos,
-            est.id id_estado,
-            est.nombre estado,
-            rol.id id_rol,
-            rol.nombre rol
-        from 
-            usuarios usu
-            inner join categorias cat on cat.id = usu.id_categoria
-            inner join estados est on est.id = usu.id_estado
-            inner join roles rol on rol.id = usu.id_rol
-            left join almacenes alm on alm.id = usu.id_almacen
-            left join ciudad ciu on ciu.id = usu.id_ciudad
-            left join departamento dep on dep.id = ciu.id_departamento 
+    select 
+        usu.id,
+        usu.cedula,
+        usu.nombre,
+        usu.fecha_nacimiento,
+        usu.telefono,
+        usu.celular,
+        usu.direccion,
+        usu.genero,
+        usu.correo_corporativo,
+        usu.operador,
+        usu.whatsapp,
+        ciu.id id_ciudad,
+        concat(dep.nombre," - ",ciu.nombre) ciudad,
+        usu.acepto_terminos,
+        est.id id_estado,
+        est.nombre estado,
+        rol.id id_rol,
+        rol.nombre rol,
+        cat.nombre campaña
+    from 
+        usuarios usu
+        inner join categorias cat on cat.id = usu.id_categoria
+        inner join estados est on est.id = usu.id_estado
+        inner join roles rol on rol.id = usu.id_rol
+        left join almacenes alm on alm.id = usu.id_almacen
+        left join ciudad ciu on ciu.id = usu.id_ciudad
+        left join departamento dep on dep.id = ciu.id_departamento
     ';
     
     public static $consulta_llamadas_usuarios = "
