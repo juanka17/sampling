@@ -12,7 +12,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
         <script src="js/foundation-datepicker.js" type="text/javascript"></script>
         <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-        <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=3" type="text/javascript"></script>
+        <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=1" type="text/javascript"></script>
 
         <script>
             var id_usuario = 0;
