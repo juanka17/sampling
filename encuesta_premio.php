@@ -9,7 +9,7 @@
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/estados_redencion.js?ver=1" type="text/javascript"></script>
+    <script src="interfaces/estados_redencion.js?ver=3" type="text/javascript"></script>
 
     <script>
     var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
@@ -23,15 +23,11 @@
 </head>
 
 <body ng-app="estadosRedencionApp" ng-controller="estadosRedencionController">
-
-
     <div id="main_container" class="grid-container off-canvas-content">
         <div class="callout">
             <?php include 'componentes/controles_superiores.php'; ?>
             <?php include 'componentes/menu.php'; ?>
             <div class="grid-x">
-
-
                 <div class="grid-x">
                     <div class="col small-12">
                         <h1>Encuesta redencion</h1>
@@ -56,7 +52,8 @@
                     </div>
 
                     <div class="col small-12">
-                        <table class="table" id="pnlEncuesta" ng-show="encuesta_redencion.length == 0">
+                        <table class="table" id="pnlEncuesta"
+                            ng-show="encuesta_redencion.length == 0 && redencion.id_premio==2916">
                             <thead>
                                 <tr>
                                     <th>Pregunta</th>
@@ -156,10 +153,76 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <table class="table" id="pnlEncuesta2"
+                            ng-show="encuesta_redencion.length == 0 && redencion.id_premio==2917">
+                            <thead>
+                                <tr>
+                                    <th>Pregunta</th>
+                                    <th>Opciones</th>
+                                    <th>Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. Qué tipos de recetas te gustaría conocer?</td>
+                                    <td>
+                                        <label> <input type="checkbox" value="3">Saladas (Platos fuertes)</label>
+                                        <label> <input type="checkbox" value="4">Dulces (Postres)</label>
+                                        <label> <input type="checkbox" value="5">Saludables</label>
+                                        <label> <input type="checkbox" value="6">Otras</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2. ¿ Cual de las 3 Bases de Maggi de la Huerta te gusto más?</td>
+                                    <td>
+                                        <label> <input type="checkbox" value="7">Napolitana</label>
+                                        <label> <input type="checkbox" value="8">Champiñones</label>
+                                        <label> <input type="checkbox" value="9">Mexicana</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3. ¿ Que receta preparaste para usar la base Maggi?</td>
+                                    <td>
+                                        <label> <input type="checkbox" value="10">Instructivo del empaque</label>
+                                        <label> <input type="checkbox" value="11">Receta Propia</label>
+                                        <label> <input type="checkbox" value="12">Recetas en Recetas Nestlé</label>
+                                        <label> <input type="checkbox" value="13">Otras</label>
+                                    </td>
+                                    <td><input class="form-control" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4. ¿ Para quién cocinas? </td>
+                                    <td>
+                                        <label> <input type="checkbox" value="14">Familia</label>
+                                        <label> <input type="checkbox" value="15">Pareja</label>
+                                        <label> <input type="checkbox" value="16">Para Mi</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <button class="button small expanded" type="button"
+                                            ng-click="RegistrarEncuestaRedencion()">
+                                            Registrar encuesta
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
 
                     <div class="small-12 cell">
-                        <table class="table" ng-show="encuesta_redencion.length > 0">
+                        <table class="table" ng-show="encuesta_redencion.length > 0 && redencion.id_premio==2916">
                             <thead>
                                 <tr>
                                     <th>Pregunta</th>
@@ -189,6 +252,48 @@
                                         <span ng-show="pregunta.respuesta == 0">No</span>
                                         <span ng-show="pregunta.respuesta == 1">Si</span>
                                         <span ng-show="pregunta.respuesta == 2">NA</span>
+                                    </td>
+                                    <td>
+                                        {{pregunta.comentario}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table" ng-show="encuesta_redencion.length > 0 && redencion.id_premio==2917">
+                            <thead>
+                                <tr>
+                                    <th>Pregunta</th>
+                                    <th>Opciones</th>
+                                    <th>Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pregunta in encuesta_redencion track by $index">
+                                    <td>
+                                        <span ng-show="pregunta.numero_pregunta == 1">Qué tipos de recetas te gustaría
+                                            conocer?</span>
+                                        <span ng-show="pregunta.numero_pregunta == 2">¿Cual de las 3 Bases de Maggi de
+                                            la Huerta te gusto más?</span>
+                                        <span ng-show="pregunta.numero_pregunta == 3">¿ Que receta preparaste para usar
+                                            la base Maggi?</span>
+                                        <span ng-show="pregunta.numero_pregunta == 4">¿ Para quién cocinas?</span>
+                                    </td>
+                                    <td>
+                                        <span ng-show="pregunta.respuesta == 3">Saladas (Platos fuertes)</span>
+                                        <span ng-show="pregunta.respuesta == 4">Dulces (Postres)</span>
+                                        <span ng-show="pregunta.respuesta == 5">Saludables</span>
+                                        <span ng-show="pregunta.respuesta == 6">Otras</span>
+                                        <span ng-show="pregunta.respuesta == 7">Napolitana</span>
+                                        <span ng-show="pregunta.respuesta == 8">Champiñones</span>
+                                        <span ng-show="pregunta.respuesta == 9">Mexicana</span>
+                                        <span ng-show="pregunta.respuesta == 10">Instructivo del empaque</span>
+                                        <span ng-show="pregunta.respuesta == 11">Receta Propia</span>
+                                        <span ng-show="pregunta.respuesta == 12">Recetas en Recetas Nestlé</span>
+                                        <span ng-show="pregunta.respuesta == 13">Otras</span>
+                                        <span ng-show="pregunta.respuesta == 14">Familia</span>
+                                        <span ng-show="pregunta.respuesta == 15">Pareja</span>
+                                        <span ng-show="pregunta.respuesta == 16">Para Mi</span>
                                     </td>
                                     <td>
                                         {{pregunta.comentario}}

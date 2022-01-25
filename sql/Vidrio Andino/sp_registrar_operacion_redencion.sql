@@ -54,6 +54,4 @@ end //
 
 delimiter ;
 
-/*
-call sp_registrar_operacion_redencion(256,2,'hecho','hecho',599);
-*/
+call sp_registrar_operacion_redencion(2708,4,'','',1619)

@@ -411,7 +411,7 @@ class Consultas
                     END "respuesta pregunta 7",
             case when numero_pregunta=7 then enc.comentario end  "comentario pregunta 7"
         FROM encuesta_redencion enc
-            INNER JOIN redenciones red ON enc.id_redencion=red.id
+            INNER JOIN redenciones red ON enc.id_redencion=red.id AND red.id_premio=2916
             INNER JOIN usuarios usu ON usu.id=red.id_usuario
         GROUP BY usu.cedula,
                 usu.nombre,
