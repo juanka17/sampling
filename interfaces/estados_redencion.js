@@ -11,7 +11,6 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
 
     $scope.MostrarRedencion = function(data) {
         $scope.redencion = data[0];
-        console.log($scope.redencion);
         $scope.CargarSeguimientoRedencion();
     };
 
@@ -100,6 +99,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
         var listado = $scope.informacion_folios.listado.split(/\n/g);
         index_folio_masivo++;
         $scope.informacion_folios.folios_procesados = index_folio_masivo;
+        console.log(listado.length);
         if (index_folio_masivo < 200 && index_folio_masivo < listado.length) {
             $scope.ProcesarFolio(listado[index_folio_masivo].split('|'));
         } else {
@@ -107,6 +107,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             alert("Proceso finalizado correctamente");
         }
     };
+
 
     $scope.ProcesarFolio = function(folio) {
         id_redencion = folio[0];
@@ -120,36 +121,33 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
     // </editor-fold>
     $scope.RegistrarEncuestaRedencion = function() {
         var preguntas_encuesta = Array();
-        if ($scope.redencion.id_premio == 2916) {
-            $("#pnlEncuesta tbody tr").each(function(index, row) {
-                if (index < 7) {
-                    var pregunta = {
-                        id_redencion: id_redencion,
-                        numero_pregunta: (index + 1),
-                        respuesta: $(row).find("select").first().val(),
-                        comentario: $(row).find("input").first().val()
-                    };
-                    preguntas_encuesta.push(pregunta);
-                }
-            });
-        }
-
-        if ($scope.redencion.id_premio == 2917) {
-            $("#pnlEncuesta2 tbody tr").each(function(index, row) {
-                if (index < 4) {
-                    var pregunta = { id_redencion: 0, numero_pregunta: 0, respuesta: [], comentario: "" };
-                    pregunta = {
-                        id_redencion: id_redencion,
-                        numero_pregunta: (index + 1),
-                        respuesta: [] $(row).find("input[type=checkbox]:checked").val(),
-                        comentario: $(row).find("input[type=text]").first().val()
-                    };
-                    preguntas_encuesta.push(pregunta);
-                }
-            });
-        }
-
         console.log(preguntas_encuesta);
+        $("#pnlEncuesta tbody tr").each(function(index, row) {
+            if (index < 7 && $scope.redencion.id_premio == 2916) {
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        $("#pnlEncuesta2 tbody tr").each(function(index, row) {
+            if (index < 4 && $scope.redencion.id_premio == 2917) {
+
+                //let respuestachk = $(row).find("input[type=checkbox]:checked").val();
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $("input[type='checkbox']").on("click", showValues),
+                    comentario: $(row).find("input[type=text]").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
 
         var parametros = {
             catalogo: "encuesta_redencion",
@@ -162,7 +160,10 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
     };
 
     $scope.CargarEncuestaRedencion = function() {
-        var parametros = { catalogo: "encuesta_redencion", id_redencion: id_redencion };
+        var parametros = {
+            catalogo: "encuesta_redencion",
+            id_redencion: id_redencion
+        };
         $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaRedencion);
     };
 
@@ -171,6 +172,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
         if (data.length > 0) {
             $scope.encuesta_redencion = data;
         }
+        console.log($scope.encuesta_redencion);
     };
 
     $scope.EjecutarLlamado = function(modelo, operacion, parametros, CallBack) {

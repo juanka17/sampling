@@ -13,7 +13,8 @@ class clsReportes
             case "redenciones": $datos = clsReportes::ReporteRedenciones($parametros);break;
             case "estado_cuenta": $datos = clsReportes::ReporteEstadoCuenta($parametros);break;
             case "cumpleanos": $datos = clsReportes::ReporteCumpleanos($parametros);break;
-            case "reporte_encuesta": $datos = clsReportes::ReporteEncuestaPremios($parametros);break;
+            case "encuesta_klim": $datos = clsReportes::ReporteEncuestaKlim($parametros);break;
+            case "encuesta_maggi": $datos = clsReportes::ReporteEncuestaMaggi($parametros);break;
             case "inventario_lista": $datos = clsReportes::ReporteInventario($parametros);break;
         }
         return clsReportes::ProcesarDatos($datos);
@@ -94,9 +95,16 @@ class clsReportes
         return $results;
     }
     
-    private static function ReporteEncuestaPremios($parametros)
+    private static function ReporteEncuestaKlim($parametros)
     {
-        $query = Consultas::$reporte_encuesta;
+        $query = "call sp_consulta_encuesta_redencion(2916);";
+        $results = clsDDBBOperations::ExecuteSelectNoParams($query);
+        return $results;
+    }
+
+    private static function ReporteEncuestaMaggi($parametros)
+    {
+        $query = "call sp_consulta_encuesta_redencion(2917);";
         $results = clsDDBBOperations::ExecuteSelectNoParams($query);
         return $results;
     }

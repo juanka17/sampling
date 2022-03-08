@@ -139,18 +139,21 @@ class Consultas
             pre.id id_premio,
             pre.nombre premio,
             pre.marca,
+            usu.id_categoria,
+            cat.nombre categoria,
             red.direccion_envio,
             red.ciudad_envio,
             red.fecha fecha_redencion,
             (SELECT fecha FROM llamadas_usuarios WHERE id_usuario = usu.id ORDER BY 1 LIMIT 1) fecha_llamada,
             red.comentarios,
+            seg.comentario comentario_seguimiento,
             red.id id_redencion,
             seg.id id_seguimiento,
             seg.referencia,
             ope.nombre operacion,
             case
                 when pre.marca='KLIM' then concat('SPK-',red.id)
-            	when pre.marca='MAGGI' then concat('SPM-',red.id)
+                when pre.marca='MAGGI' then concat('SPM-',red.id)
             end folio,
             reg.nombre registra
         from 
@@ -164,7 +167,6 @@ class Consultas
             inner join seguimiento_redencion seg on seg.id = red.id_ultima_operacion
             inner join operaciones_redencion ope on ope.id = seg.id_operacion
             left join usuarios reg on reg.id = red.id_registra
-
     ";
     
     public static $consulta_seguimiento_redencion = "
@@ -370,56 +372,6 @@ class Consultas
             FROM usuarios usu
             inner JOIN almacenes alm ON alm.id = usu.id_almacen
     ";
-
-    public static $reporte_encuesta= '
-        SELECT usu.id id,
-            usu.cedula,
-            usu.nombre,
-            red.id redencion,
-            case when numero_pregunta=1 AND respuesta= 0 then "No"
-                    when numero_pregunta=1 AND  respuesta=1 then "Si"
-                    when numero_pregunta=1 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 1",
-            case when numero_pregunta=1 then enc.comentario end  "comentario pregunta 1",
-            case when numero_pregunta=2 AND respuesta= 0 then "No"
-                    when numero_pregunta=2 AND  respuesta=1 then "Si"
-                    when numero_pregunta=2 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 2",
-            case when numero_pregunta=2 then enc.comentario end  "comentario pregunta 2",
-            case when numero_pregunta=3 AND respuesta= 0 then "No"
-                    when numero_pregunta=3 AND  respuesta=1 then "Si"
-                    when numero_pregunta=3 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 3",
-            case when numero_pregunta=3 then enc.comentario end  "comentario pregunta 3",
-            case when numero_pregunta=4 AND respuesta= 0 then "No"
-                    when numero_pregunta=4 AND  respuesta=1 then "Si"
-                    when numero_pregunta=4 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 4",
-            case when numero_pregunta=4 then enc.comentario end  "comentario pregunta 4",
-            case when numero_pregunta=5 AND respuesta= 0 then "No"
-                    when numero_pregunta=5 AND  respuesta=1 then "Si"
-                    when numero_pregunta=5 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 5",
-            case when numero_pregunta=5 then enc.comentario end  "comentario pregunta 5",
-            case when numero_pregunta=6 AND respuesta= 0 then "No"
-                    when numero_pregunta=6 AND  respuesta=1 then "Si"
-                    when numero_pregunta=6 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 6",
-            case when numero_pregunta=6 then enc.comentario end  "comentario pregunta 6",
-            case when numero_pregunta=7 AND respuesta= 0 then "No"
-                    when numero_pregunta=7 AND  respuesta=1 then "Si"
-                    when numero_pregunta=7 AND  respuesta=2 then "NA" 
-                    END "respuesta pregunta 7",
-            case when numero_pregunta=7 then enc.comentario end  "comentario pregunta 7"
-        FROM encuesta_redencion enc
-            INNER JOIN redenciones red ON enc.id_redencion=red.id AND red.id_premio=2916
-            INNER JOIN usuarios usu ON usu.id=red.id_usuario
-        GROUP BY usu.cedula,
-                usu.nombre,
-                red.id,
-                enc.numero_pregunta
-        ORDER BY usu.cedula, enc.numero_pregunta
-';
-}
+    }
 
 ?>
