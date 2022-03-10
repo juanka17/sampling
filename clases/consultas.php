@@ -154,6 +154,7 @@ class Consultas
             case
                 when pre.marca='KLIM' then concat('SPK-',red.id)
                 when pre.marca='MAGGI' then concat('SPM-',red.id)
+                when pre.marca='MAGGI VEGGIE' then concat('SPV-',red.id)
             end folio,
             reg.nombre registra
         from 
