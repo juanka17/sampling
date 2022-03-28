@@ -36,7 +36,9 @@
                             <option value="estado_cuenta">Estado Cuenta</option>
                             <option value="llamadas">Llamadas</option>
                             <option value="redenciones">Redenciones</option>
-                            <option value="reporte_encuesta">Reporte de encuesta</option>
+                            <option value="encuesta_klim">Reporte de encuesta Klim</option>
+                            <option value="encuesta_maggi">Reporte de encuesta Maggi</option>
+                            <option value="encuesta_vegie">Reporte de encuesta Maggi Veggie</option>
                         </select>
                     </label>
                 </div>

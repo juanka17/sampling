@@ -15,6 +15,7 @@ class clsReportes
             case "cumpleanos": $datos = clsReportes::ReporteCumpleanos($parametros);break;
             case "encuesta_klim": $datos = clsReportes::ReporteEncuestaKlim($parametros);break;
             case "encuesta_maggi": $datos = clsReportes::ReporteEncuestaMaggi($parametros);break;
+            case "encuesta_vegie": $datos = clsReportes::ReporteEncuestaVeggie($parametros);break;
             case "inventario_lista": $datos = clsReportes::ReporteInventario($parametros);break;
         }
         return clsReportes::ProcesarDatos($datos);
@@ -109,6 +110,13 @@ class clsReportes
         return $results;
     }
     
+    private static function ReporteEncuestaVeggie($parametros)
+    {
+        $query = "call sp_consulta_encuesta_redencion(2918);";
+        $results = clsDDBBOperations::ExecuteSelectNoParams($query);
+        return $results;
+    }
+
     private static function ReporteInventario($parametros)
     {
         $query = Consultas::$reporte_inventario;

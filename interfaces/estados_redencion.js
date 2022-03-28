@@ -148,6 +148,19 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             }
         });
 
+        $("#pnlEncuesta3 tbody tr").each(function(index, row) {
+            if (index < 4 && $scope.redencion.id_premio == 2918) {
+
+                let respuestachk = $(row).find("input[type=checkbox]:checked").val();
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: respuestachk,
+                    comentario: $(row).find("input[type=text]").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
 
         var parametros = {
             catalogo: "encuesta_redencion",
@@ -156,7 +169,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             id_redencion: id_redencion
         };
         console.log(parametros);
-        //$scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.CargarEncuestaRedencion);
+        $scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.CargarEncuestaRedencion);
     };
 
     $scope.CargarEncuestaRedencion = function() {
