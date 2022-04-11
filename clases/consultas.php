@@ -152,13 +152,15 @@ class Consultas
             seg.referencia,
             ope.nombre operacion,
             case
-                when pre.marca='KLIM' then concat('SPK-',red.id)
-                when pre.marca='MAGGI' then concat('SPM-',red.id)
-                when pre.marca='MAGGI VEGGIE' then concat('SPV-',red.id)
+                when pre.id=2916 then concat('SPK-',red.id)
+                when pre.id=2917 then concat('SPM-',red.id)
+                when pre.id=2918 then concat('SPV-',red.id)
+                when pre.id=2919 then concat('SPN-',red.id)
+                when pre.id=2929 then concat('SPML-',red.id)
             end folio,
             reg.nombre registra
         from 
-            redenciones red
+        redenciones red
             inner join usuarios usu on usu.id = red.id_usuario
             inner join categorias cat on cat.id = usu.id_categoria
             left join ciudad ciu on ciu.id = usu.id_ciudad
