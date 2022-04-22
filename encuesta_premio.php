@@ -9,7 +9,7 @@
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/estados_redencion.js?ver=5" type="text/javascript"></script>
+    <script src="interfaces/estados_redencion.js?ver=6" type="text/javascript"></script>
 
     <script>
     var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
@@ -301,6 +301,140 @@
                             </form>
                         </table>
 
+                        <table class="table" id="pnlEncuesta4"
+                            ng-show="encuesta_redencion.length == 0 && redencion.id_premio==2919">
+                            <thead>
+                                <tr>
+                                    <th>Pregunta</th>
+                                    <th>Opciones</th>
+                                    <th>Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. ¿Conocías la marca Nature's Heart</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.	¿Incluirías en tu próxima compra alguna de estas variedades? ¿Cual? </td>
+                                    <td>
+                                        <select ng-hide class="form-control" value="2">
+                                            <option value="Te Detox">Te Detox</option>
+                                            <option value="Mezcla Antioxidante">Mezcla Antioxidante</option>
+                                            <option value="Té  y Snack">Té  y Snack</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3.	De la Mezcla Antioxidante ¿Qué fue lo que más te gusto?</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="NA">NA</option>
+                                        </select>
+                                    </td>
+                                    <td><input class="form-control" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4. ¿Te gustó la receta de torta de avena y naranja con frutas como
+                                        acompañamiento para KLIM® en cajita? </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="NA">NA</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <button class="button small expanded" type="button"
+                                            ng-click="RegistrarEncuestaRedencion()">
+                                            Registrar encuesta
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table" id="pnlEncuesta5"
+                            ng-show="encuesta_redencion.length == 0 && redencion.id_premio==2929">
+                            <thead>
+                                <tr>
+                                    <th>Pregunta</th>
+                                    <th>Opciones</th>
+                                    <th>Comentarios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.	¿Conocías previamente esta variedad de MILO® Sin Azúcar Añadida</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2.	¿Qué te pareció el sabor? </td>
+                                    <td>
+                                        <select ng-hide class="form-control" value="2">
+                                            <option value="NA">NA</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3.	¿Incluirías MILO® Nutrifit® en tu próxima compra para la lonchera de tu hijo/a? </td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </td>
+                                    <td><input class="form-control" type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td>4.	¿Qué fue lo que más te gustó?</td>
+                                    <td>
+                                        <select class="form-control">
+                                            <option value="Sabor">Sabor</option>
+                                            <option value="Que no tiene azúcar añadida">Que no tiene azúcar añadida</option>
+                                            <option value="Las dos anteriores">Las dos anteriores</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <button class="button small expanded" type="button"
+                                            ng-click="RegistrarEncuestaRedencion()">
+                                            Registrar encuesta
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <div class="small-12 cell">
                             <table class="table" ng-show="encuesta_redencion.length > 0 && redencion.id_premio==2916">
                                 <thead>
@@ -395,6 +529,58 @@
                                             <span ng-show="pregunta.numero_pregunta == 3">¿Qué receta preparaste para
                                                 usar la base Maggi?</span>
                                             <span ng-show="pregunta.numero_pregunta == 4">¿Para quién Cocinas?</span>
+                                        </td>
+                                        <td>
+                                            <span>{{pregunta.respuesta}}</span>
+                                        </td>
+                                        <td>
+                                            {{pregunta.comentario}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table" ng-show="encuesta_redencion.length > 0 && redencion.id_premio==2919">
+                                <thead>
+                                    <tr>
+                                        <th>Pregunta</th>
+                                        <th>Opciones</th>
+                                        <th>Comentarios</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pregunta in encuesta_redencion track by $index">
+                                        <td>
+                                            <span ng-show="pregunta.numero_pregunta == 1">¿Conocías la marca Nature's Heart®?</span>
+                                            <span ng-show="pregunta.numero_pregunta == 2">¿Incluirías en tu próxima compra alguna de estas variedades? ¿Cual? </span>
+                                            <span ng-show="pregunta.numero_pregunta == 3">De la Mezcla Antioxidante ¿Qué fue lo que más te gusto?</span>
+                                            <span ng-show="pregunta.numero_pregunta == 4">Del Te Detox ¿Qué fue lo que más te gusto?</span>
+                                        </td>
+                                        <td>
+                                            <span>{{pregunta.respuesta}}</span>
+                                        </td>
+                                        <td>
+                                            {{pregunta.comentario}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table" ng-show="encuesta_redencion.length > 0 && redencion.id_premio==2929">
+                                <thead>
+                                    <tr>
+                                        <th>Pregunta</th>
+                                        <th>Opciones</th>
+                                        <th>Comentarios</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pregunta in encuesta_redencion track by $index">
+                                        <td>
+                                            <span ng-show="pregunta.numero_pregunta == 1">¿Conocías previamente esta variedad de MILO® Sin Azúcar Añadida?</span>
+                                            <span ng-show="pregunta.numero_pregunta == 2">¿Qué te pareció el sabor?</span>
+                                            <span ng-show="pregunta.numero_pregunta == 3">¿Incluirías MILO® Nutrifit® en tu próxima compra para la lonchera de tu hijo/a? </span>
+                                            <span ng-show="pregunta.numero_pregunta == 4">¿Qué fue lo que más te gustó?</span>
                                         </td>
                                         <td>
                                             <span>{{pregunta.respuesta}}</span>

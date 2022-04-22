@@ -157,6 +157,7 @@ class Consultas
                 when pre.id=2918 then concat('SPV-',red.id)
                 when pre.id=2919 then concat('SPN-',red.id)
                 when pre.id=2929 then concat('SPML-',red.id)
+                when pre.id=2929 then concat('SPLH-',red.id)
             end folio,
             reg.nombre registra
         from 

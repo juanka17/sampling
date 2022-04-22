@@ -162,6 +162,30 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             }
         });
 
+        $("#pnlEncuesta4 tbody tr").each(function(index, row) {
+            if (index < 4 && $scope.redencion.id_premio == 2919) {
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        $("#pnlEncuesta5 tbody tr").each(function(index, row) {
+            if (index < 4 && $scope.redencion.id_premio == 2929) {
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
         var parametros = {
             catalogo: "encuesta_redencion",
             catalogo_real: "encuesta_redencion",
