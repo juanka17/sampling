@@ -85,12 +85,8 @@
                     <div class="small-3 cell">
                         <label>
                             Nuevo estado
-                            <select ng-model='nuevo_estado.id_operacion' ng-show="usuario_en_sesion.id == 1 || usuario_en_sesion.id == 8 || usuario_en_sesion.id == 1619">
+                            <select ng-model='nuevo_estado.id_operacion'>
                                 <option ng-repeat="operacion in operaciones_redencion track by $index" value='{{operacion.id}}'>{{operacion.nombre}}</option>
-                            </select>
-
-                            <select ng-model='nuevo_estado.id_operacion' ng-show="usuario_en_sesion.id != 1 && usuario_en_sesion.id != 8 && usuario_en_sesion.id != 1619">
-                                <option ng-repeat="operacion in operaciones_redencion track by $index" ng-hide="operacion.id ==12 || operacion.id ==13" value='{{operacion.id}}'>{{operacion.nombre}}</option>
                             </select>
                         </label>
                     </div>

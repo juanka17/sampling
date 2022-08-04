@@ -83,6 +83,9 @@
                                         <tr><td>9</td><td>Garantia En Proceso</td></tr>
                                         <tr><td>10</td><td>Devolución - Ausente</td></tr>
                                         <tr><td>11</td><td>Devolución - No reside</td></tr>
+                                        <tr><td>12</td><td>Devolución Definitiva- 4ta Visita No Atendida</td></tr>
+                                        <tr><td>13</td><td>Devolución Definitiva- Visita y Contacto No Atendido</td></tr>
+                                        <tr><td>14</td><td>Pendiente Cobertura</td></tr>
                                     </tbody>
                                 </table>         
                                 <b>Cantidad de folios:</b> {{informacion_folios.cantidad}}

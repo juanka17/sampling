@@ -10,7 +10,7 @@ begin
 	
 	set @diferencia_dias = (select DATEDIFF(now(),fecha) diferencia from redenciones where id = id_redencion_p);
 	
-	if (id_operacion_p = 5 and @diferencia_dias > 1) and id_registra_p in (1619,8) then
+	if (id_operacion_p = 5 and @diferencia_dias > 1) and id_registra_p in (1619,8,1642) then
 		
 		set @id_periodo = (SELECT max(id) FROM periodo WHERE now() between fecha_inicio and fecha_final);
 		set @id_usuario = (SELECT max(id_usuario) FROM redenciones WHERE id = id_redencion_p);
@@ -54,4 +54,4 @@ end //
 
 delimiter ;
 
-call sp_registrar_operacion_redencion(2708,4,'','',1619)
+#call sp_registrar_operacion_redencion(2708,4,'','',1619)

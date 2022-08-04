@@ -44,7 +44,7 @@ class clsReportes
     
     private static function ReporteUsuarios($parametros)
     {
-        $query = Consultas::$consulta_usuarios." where rol.id = 1 ";
+        $query = Consultas::$consulta_usuarios." where rol.id = 1 order by 1";
         $results = clsDDBBOperations::ExecuteSelectNoParams($query);
         return $results;
     }
@@ -59,8 +59,12 @@ class clsReportes
     
     private static function ReporteRedenciones($parametros)
     {
-        
-        $query = Consultas::$consulta_general_redenciones;
+        if($parametros->id_premio == 1){
+            $consulta = 'where 1=1';
+        }else{
+            $consulta = "where  pre.id = ". $parametros->id_premio;
+        }
+        $query = Consultas::$consulta_general_redenciones.$consulta;
         $results = clsDDBBOperations::ExecuteSelectNoParams($query);
         return $results;
     }

@@ -121,7 +121,7 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
     // </editor-fold>
     $scope.RegistrarEncuestaRedencion = function() {
         var preguntas_encuesta = Array();
-        console.log(preguntas_encuesta);
+
         $("#pnlEncuesta tbody tr").each(function(index, row) {
             if (index < 7 && $scope.redencion.id_premio == 2916) {
                 var pregunta = {
@@ -186,6 +186,47 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             }
         });
 
+        $("#pnlEncuesta6 tbody tr").each(function(index, row) {
+            if ($scope.redencion.id_premio == 2921) {
+
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        $("#pnlEncuesta7 tbody tr").each(function(index, row) {
+            if ($scope.redencion.id_premio == 2931) {
+
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        $("#pnlEncuesta8 tbody tr").each(function(index, row) {
+            if ($scope.redencion.id_premio == 2933) {
+
+                var pregunta = {
+                    id_redencion: id_redencion,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+
+        console.log(preguntas_encuesta);
         var parametros = {
             catalogo: "encuesta_redencion",
             catalogo_real: "encuesta_redencion",

@@ -2,7 +2,11 @@ angular.module('reportesApp', []).controller('reportesController', function($sco
 
     $scope.CargarReporte = function() {
         if ($scope.reporte_seleccionado != "") {
-            var parametros = {};
+            if ($scope.reporte_seleccionado == 'redenciones') {
+                var parametros = { id_premio: $scope.premio_filtro };
+            } else {
+                var parametros = {};
+            }
             console.log($scope.reporte_seleccionado);
             $scope.EjecutarLlamado("reportes", $scope.reporte_seleccionado, parametros, $scope.MostrarReporte);
         } else {

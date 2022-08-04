@@ -3,34 +3,37 @@
 class Consultas
 {
     public static $consulta_usuarios = '
-    select 
-        usu.id,
-        usu.cedula,
-        usu.nombre,
-        usu.fecha_nacimiento,
-        usu.telefono,
-        usu.celular,
-        usu.direccion,
-        usu.genero,
-        usu.correo_corporativo,
-        usu.operador,
-        usu.whatsapp,
-        ciu.id id_ciudad,
-        concat(dep.nombre," - ",ciu.nombre) ciudad,
-        usu.acepto_terminos,
-        est.id id_estado,
-        est.nombre estado,
-        rol.id id_rol,
-        rol.nombre rol,
-        cat.nombre campaña
-    from 
-        usuarios usu
-        inner join categorias cat on cat.id = usu.id_categoria
-        inner join estados est on est.id = usu.id_estado
-        inner join roles rol on rol.id = usu.id_rol
-        left join almacenes alm on alm.id = usu.id_almacen
-        left join ciudad ciu on ciu.id = usu.id_ciudad
-        left join departamento dep on dep.id = ciu.id_departamento
+        select 
+            usu.id,
+            usu.cedula,
+            usu.nombre,
+            usu.fecha_nacimiento,
+            usu.telefono,
+            usu.celular,
+            usu.direccion,
+            usu.genero,
+            usu.correo_corporativo,
+            usu.operador,
+            usu.whatsapp,
+            ciu.id id_ciudad,
+            concat(dep.nombre," - ",ciu.nombre) ciudad,
+            usu.acepto_terminos,
+            est.id id_estado,
+            est.nombre estado,
+            rol.id id_rol,
+            rol.nombre rol,
+            cat.nombre campaña,
+            usu.fecha_creacion,
+            usu.fecha_actualizacion,
+            usu.fecha_envio
+        from 
+            usuarios usu
+            inner join categorias cat on cat.id = usu.id_categoria
+            inner join estados est on est.id = usu.id_estado
+            inner join roles rol on rol.id = usu.id_rol
+            left join almacenes alm on alm.id = usu.id_almacen
+            left join ciudad ciu on ciu.id = usu.id_ciudad
+            left join departamento dep on dep.id = ciu.id_departamento
     ';
     
     public static $consulta_llamadas_usuarios = "
@@ -53,10 +56,11 @@ class Consultas
             usu.id id_usuario,
             usu.cedula,
             usu.nombre usuario,
-            alm.nombre almacen,
             lla.id, 
             lla.fecha, 
-            concat(tpl.NOMBRE,'-',scl.NOMBRE,'-',cal.NOMBRE) categoria,
+            tpl.NOMBRE tipo,
+            scl.NOMBRE categoria,
+            cal.NOMBRE sub_categoria,
             usr.NOMBRE registro, 
             comentario
         FROM    
@@ -64,8 +68,7 @@ class Consultas
             inner join categorias_llamada cal on lla.ID_SUBCATEGORIA = cal.ID 
             inner join categorias_llamada scl on scl.ID = cal.ID_PADRE
             inner join categorias_llamada tpl on tpl.ID = scl.ID_PADRE
-            inner join usuarios usu on usu.id = lla.id_usuario
-            inner join almacenes alm on alm.id = usu.id_almacen
+            left join usuarios usu on usu.id = lla.id_usuario
             left join usuarios usr on usr.id = lla.id_usuario_registra
     ";
     
@@ -156,8 +159,15 @@ class Consultas
                 when pre.id=2917 then concat('SPM-',red.id)
                 when pre.id=2918 then concat('SPV-',red.id)
                 when pre.id=2919 then concat('SPN-',red.id)
+                when pre.id=2921 then concat('SPLH-',red.id)
                 when pre.id=2929 then concat('SPML-',red.id)
-                when pre.id=2929 then concat('SPLH-',red.id)
+                when pre.id=2930 then concat('SPFT-',red.id)
+                when pre.id=2931 then concat('SPCO-',red.id)  
+                when pre.id=2932 then concat('SPRC-',red.id)  
+                when pre.id=2933 then concat('SPCl-',red.id)    
+                when pre.id=2934 then CONCAT('SPCF-',red.id)           
+                when pre.id=2935 then CONCAT('SPJH-',red.id)           
+                when pre.id=2936 then CONCAT('SPJS-',red.id)           
             end folio,
             reg.nombre registra
         from 
@@ -377,5 +387,3 @@ class Consultas
             inner JOIN almacenes alm ON alm.id = usu.id_almacen
     ";
     }
-
-?>

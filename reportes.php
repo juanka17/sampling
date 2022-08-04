@@ -4,7 +4,7 @@
 
 <head>
     <?php include 'componentes/componentes_basicos.php'; ?>
-    <script src="interfaces/reportes.js" type="text/javascript"></script>
+    <script src="interfaces/reportes.js?ver=2" type="text/javascript"></script>
     <script>
     var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
     </script>
@@ -41,6 +41,22 @@
                             <option value="encuesta_vegie">Reporte de encuesta Maggi Veggie</option>
                         </select>
                     </label>
+                    <div>
+                        <label for="premio">Seleccione Premio</label>
+                        <select name="premios" id="premio" ng-model="premio_filtro" ng-show="reporte_seleccionado == 'redenciones'">
+                            <option value="1" selected>General</option>
+                            <option value="2916">KLIM RTD Fresa TetraPak 180ml</option>
+                            <option value="2917">SALSAS MAGGI</option>
+                            <option value="2918">MAGGI VEGGIE</option>
+                            <option value="2919">NATURE</option>
+                            <option value="2921">LECHERA</option>
+                            <option value="2929">MILO</option>
+                            <option value="2930">FITNESS</option>
+                            <option value="2931">COCOSETTE</option>
+                            <option value="2932">RECETARIO</option>
+                            <option value="2933">CREMA DE LECHE</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="cell small-6">
                     <br />
