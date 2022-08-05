@@ -98,35 +98,6 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
                             </label>
                         </div>
 
-
-                        <div class="medium-4 cell">
-                            Dirección <a href="#" ng-click="AbrirModalDireccion()">
-                                <i class="fa fa-edit"></i> Agregar dirección</a>
-                            <label>
-
-                                <input type="text" ng-disabled="true" placeholder="Direccion" 
-                                    ng-model="datos_usuario.direccion" required>
-                            </label>
-
-                            <div ng-show="modificar_direccion">
-                                <label ng-show="ciudades.length == 0">
-                                    Direccion
-
-                                </label>
-
-                                <label ng-show="ciudades.length > 0">
-                                    Seleccionar Ciudad
-                                    <select id="dd_ciudad_usuario" ng-model='datos_usuario.id_ciudad'
-                                        ng-change="VerificarCambios()">
-                                        <option ng-repeat="ciudad in ciudades track by $index" value='{{ciudad.id}}'>
-                                            {{ciudad.nombre}}</option>
-                                    </select>
-                                    <button class="button alert" ng-click="ciudades = []; nombre_ciudad = '';"><i
-                                            class="fa fa-arrow-left"></i> Cambiar</button>
-                                </label>
-                            </div>
-                        </div>
-
                         <div class="medium-4 cell">
                             <div ng-show="!modificar_ciudad">
                                 <label ng-show="ciudades.length == 0">
@@ -156,6 +127,35 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
                                 </label>
                             </div>
                         </div>
+                        
+                        <div class="medium-12 cell">
+                            Dirección <a href="#" ng-click="AbrirModalDireccion()">
+                            <small><i class="fa fa-edit"></i> Cambiar Dirección</a></small>
+                            <label>
+
+                                <input type="text" ng-disabled="true" placeholder="Direccion" 
+                                    ng-model="datos_usuario.direccion" required>
+                            </label>
+
+                            <div ng-show="modificar_direccion">
+                                <label ng-show="ciudades.length == 0">
+                                    Direccion
+
+                                </label>
+
+                                <label ng-show="ciudades.length > 0">
+                                    Seleccionar Ciudad
+                                    <select id="dd_ciudad_usuario" ng-model='datos_usuario.id_ciudad'
+                                        ng-change="VerificarCambios()">
+                                        <option ng-repeat="ciudad in ciudades track by $index" value='{{ciudad.id}}'>
+                                            {{ciudad.nombre}}</option>
+                                    </select>
+                                    <button class="button alert" ng-click="ciudades = []; nombre_ciudad = '';"><i
+                                            class="fa fa-arrow-left"></i> Cambiar</button>
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="medium-4 cell">
                             <label>
                                 Correo
@@ -163,6 +163,8 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
                                     ng-model="datos_usuario.correo_corporativo">
                             </label>
                         </div>
+
+                       
                         <div class="medium-4 cell">
                             <label>
                                 Genero

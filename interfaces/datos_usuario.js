@@ -369,14 +369,17 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
 
     $scope.datos_direccion = {
         localidad_direccion: "",
+        separador: "~",
         via: "",
         numero: "",
         letra: "",
         bis: "",
         complemento: "",
         cardinalidad: "",
+        numeral: "#",
         numero1: "",
         letra1: "",
+        guion: "-",
         complemento1: "",
         cardinalidad1: "",
         barrio: "",
@@ -421,8 +424,15 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
     $scope.GuardarDireccion = function() {
         $scope.nueva_direccion = ""
         angular.forEach($scope.datos_direccion, function(value, key) {
+
+            console.log(key, value)
             if (value != "") {
-                $scope.nueva_direccion += value + " "
+                if (key != "ciudad_direccion") {
+                    if (key != "dpt_direccion") {
+                        $scope.nueva_direccion += value + " "
+                    }
+                }
+
             }
 
         });
