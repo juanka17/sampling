@@ -362,6 +362,76 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
         console.log(2);
     };
 
+    $scope.AbrirModalDireccion = function() {
+        $("#modaldireccion").foundation("open")
+
+    }
+
+    $scope.datos_direccion = {
+        localidad_direccion: "",
+        via: "",
+        numero: "",
+        letra: "",
+        bis: "",
+        complemento: "",
+        cardinalidad: "",
+        numero1: "",
+        letra1: "",
+        complemento1: "",
+        cardinalidad1: "",
+        barrio: "",
+        vivienda: "",
+        departamento_direccion: "",
+        ciudad_direccion: "",
+        otros: ""
+
+    }
+
+    $scope.ObtenerDepartamento = function() {
+        var parametros = { catalogo: "departamentosdireccion" };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarDepartamentos);
+    };
+
+    $scope.MostrarDepartamentos = function(data) {
+        $scope.departamentos_direccion = data;
+
+
+    };
+
+    $scope.ValidarLocalidad = function(data) {
+        console.log(data)
+        if (data == 948) {
+            $scope.MostrarLocalidad = true;
+        } else {
+            $scope.MostrarLocalidad = false;
+        }
+    };
+
+
+    $scope.ObtenerCiudad = function(data) {
+        var parametros = { catalogo: "ciudadesdireccion", id_departamento: data };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarCiudades);
+
+    };
+
+    $scope.MostrarCiudades = function(data) {
+        $scope.ciudades_direccion = data;
+    };
+
+    $scope.GuardarDireccion = function() {
+        $scope.nueva_direccion = ""
+        angular.forEach($scope.datos_direccion, function(value, key) {
+            if (value != "") {
+                $scope.nueva_direccion += value + " "
+            }
+
+        });
+        console.log($scope.nueva_direccion);
+        $scope.datos_usuario.direccion = $scope.nueva_direccion
+        $scope.VerificarCambios()
+        $("#modaldireccion").foundation("close")
+    }
+
     // </editor-fold>
 
     $scope.EjecutarLlamado = function(modelo, operacion, parametros, CallBack) {
@@ -383,6 +453,8 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
     $scope.usuario_en_sesion = usuario_en_sesion;
     $scope.id_usuario = id_usuario;
     $scope.CargarCatalogos();
+    $scope.ObtenerDepartamento();
+
 });
 
 $(function() {

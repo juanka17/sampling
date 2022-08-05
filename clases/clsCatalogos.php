@@ -182,6 +182,16 @@ class clsCatalogos
                 $query = Consultas::$almacen_usuario." where usu.id = ".$parametros->id_usuario;
                 $order = " ";
             };break;
+
+            case "departamentosdireccion": {
+                $query = "SELECT * FROM departamento";
+                $order = " ";
+            };break;
+            case "ciudadesdireccion": {
+                $query = "SELECT * FROM ciudad WHERE id_departamento = ".$parametros->id_departamento;
+                $order = " ";
+            };break;
+            
                 
         }
         $query = $query.$order;
