@@ -483,7 +483,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
 
                 <label>
                     Otros *
-                    <textarea rows="4" ng-model="datos_direccion.otros" maxlength="250" placeholder="Especificar detalles adicionales (torre, apto)" required></textarea>
+                    <textarea rows="4" ng-model="datos_direccion.otros" maxlength="250" placeholder="Especificar detalles adicionales (torre, apto)"></textarea>
                     
                 </label>
             </div>
