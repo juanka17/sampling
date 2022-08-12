@@ -108,6 +108,7 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
 
     $scope.MostrarCiudades = function(data) {
         $scope.ciudades = data;
+        console.log($scope.ciudades)
     };
 
     // </editor-fold>
@@ -413,11 +414,11 @@ angular.module('datosUsuarioApp', []).controller('datosUsuarioController', funct
 
     $scope.ObtenerCiudad = function(data) {
         var parametros = { catalogo: "ciudadesdireccion", id_departamento: data };
-        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarCiudades);
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarCiudadesDireccion);
 
     };
 
-    $scope.MostrarCiudades = function(data) {
+    $scope.MostrarCiudadesDireccion = function(data) {
         $scope.ciudades_direccion = data;
     };
 

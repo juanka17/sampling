@@ -1,8 +1,4 @@
 <?php include 'componentes/control_sesiones.php'; ?>
-<?php
-header("Cache-Control: no-store, no-cache, must-revalidate");
-header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
-?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
@@ -13,7 +9,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=2" type="text/javascript"></script>
+    <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=4" type="text/javascript"></script>
 
     <script>
     var id_usuario = 0;
@@ -104,16 +100,16 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
                                     Ciudad <a href="#" ng-click="modificar_ciudad = true; nombre_ciudad = ''">
                                         <i class="fa fa-edit"></i> Cambiar Ciudad</a>
                                     <input type="text" ng-disabled="true" placeholder="Nombre de la ciudad"
-                                        ng-model="nombre_ciudad" required>
+                                        ng-model="nombre_ciudad">
                                 </label>
                             </div>
                             <div ng-show="modificar_ciudad">
                                 <label ng-show="ciudades.length == 0">
                                     Ciudad
-                                    <input type="text" placeholder="Nombre de la ciudad" ng-blur="BuscarCiudad()"
+                                    <input type="text" placeholder="Ingrese  ciudad" ng-blur="BuscarCiudad()"
                                         ng-model="nombre_ciudad" required>
-                                    <button type="button" class="button">Seleccionar Ciudad <i
-                                            class="fa fa-search"></i></button>
+                                    <button type="button" class="button">Buscar Ciudad 
+                                        <i class="fa fa-search"></i></button>
                                 </label>
                                 <label ng-show="ciudades.length > 0">
                                     Seleccionar Ciudad
