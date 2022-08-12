@@ -6,6 +6,7 @@ class Consultas
         select 
             usu.id,
             usu.cedula,
+            usu.cedula_sampling,
             usu.nombre,
             usu.fecha_nacimiento,
             usu.telefono,

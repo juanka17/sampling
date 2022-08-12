@@ -1,6 +1,6 @@
 angular.module('datosUsuarioApp', []).controller('datosUsuarioController', function($scope, $http) {
 
-    $scope.datos_usuario = { nombre: "", apellido: "", telefono: "", direccion: "", negocio: "", correo: "", documento: "" };
+    $scope.datos_usuario = { nombre: "", apellido: "", telefono: "", direccion: "", negocio: "", correo: "", documento: "", cedula_sampling: "" };
 
     // <editor-fold defaultstate="collapsed" desc="Catálogos">
 

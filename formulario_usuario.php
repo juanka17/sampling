@@ -9,7 +9,7 @@
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=4" type="text/javascript"></script>
+    <script src="interfaces/datos_usuario.js?cant=tell&if=is_true&ver=5" type="text/javascript"></script>
 
     <script>
     var id_usuario = 0;
@@ -58,11 +58,18 @@
                 </div>
                 <div class="cell small-12 medium-9">
                     <div class="grid-x grid-padding-x">
+                    <div class="medium-4 cell">
+                            <label>
+                                Cédula sampling
+                                <input type="text" placeholder="Cédula"
+                                    ng-model="datos_usuario.cedula_sampling" ng-disabled="true">
+                            </label>
+                        </div>
                         <div class="medium-4 cell">
                             <label>
                                 Cédula
                                 <input type="text" placeholder="Cédula" ng-change="VerificarCambios()"
-                                    ng-model="datos_usuario.cedula">
+                                    ng-model="datos_usuario.cedula" >
                             </label>
                         </div>
                         <div class="medium-4 cell">
@@ -124,7 +131,7 @@
                             </div>
                         </div>
                         
-                        <div class="medium-12 cell">
+                        <div class="medium-8 cell">
                             Dirección <a href="#" ng-click="AbrirModalDireccion()">
                             <small><i class="fa fa-edit"></i> Cambiar Dirección</a></small>
                             <label>
