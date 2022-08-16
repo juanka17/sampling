@@ -9,7 +9,7 @@
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/estados_redencion.js?ver=9" type="text/javascript"></script>
+    <script src="interfaces/estados_redencion.js?ver=10" type="text/javascript"></script>
 
     <script>
         var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
@@ -518,15 +518,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1.¿Qué le gusta del producto?</td>
+                                <td>1. ¿Qué fue lo que más te gusto de Cocosette® Chocosandwich?</td>
                                 <td>
                                     <select class="form-control">
-                                        <option value="Sabor">Sabor</option>
-                                        <option value="Mix de productos ">Mix de productos </option>
-                                        <option value="Saludable">Saludable</option>
-                                        <option value="Textura ">Textura </option>
-                                        <option value="Presentación ">Presentación </option>
-                                        <option value="Otro ">Otro </option>
+                                        <option value="Sabor en general">Sabor en general</option>
+                                        <option value="Combinación de Chocolate y Coco">Combinación de Chocolate y Coco</option>
+                                        <option value="Presentacion">Presentación</option>
+                                        <option value="Otra">Otra </option>
                                     </select>
                                 </td>
                                 <td>
@@ -534,7 +532,48 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>2.	¿Compraría el producto? </td>
+                                <td>2. ¿Qué fue lo que menos te gusto de Cocosette® Chocosandwich?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Sabor en general">Sabor en general</option>
+                                        <option value="Combinación de Chocolate y Coco">Combinación de Chocolate y Coco</option>
+                                        <option value="Presentación">Presentación</option>
+                                        <option value="Muy dulce">Muy dulce</option>
+                                        <option value="Otra">Otra </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. ¿Incluirías en tu próxima compra Cocosette® Chocosandwich?</td>
+                                <td>
+                                    <select class="form-control" value="2">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                      </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. ¿En qué medios has visto comunicación de Cocosette® Chocosandwich?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Television">Televisión</option>
+                                        <option value="Redes Sociales (Instagram-Facebook)">Redes Sociales (Instagram-Facebook)</option>
+                                        <option value="Internet (Páginas Webs)">Internet (Páginas Webs)</option>
+                                        <option value="No he visto">No he visto</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5. ¿Conocías la marca Cocosette®?</td>
                                 <td>
                                     <select class="form-control" value="2">
                                         <option value="Si">Si</option>
