@@ -190,10 +190,13 @@ class Consultas
             ope.nombre operacion,
             seg.comentario,
             seg.referencia,
+            red.direccion_envio,
+            red.ciudad_envio,
             seg.fecha
         from
             seguimiento_redencion seg
             inner join operaciones_redencion ope on ope.id = seg.id_operacion
+            INNER JOIN redenciones red ON red.id=seg.id_redencion
     ";
     
     public static $reporte_cumpleanos = "

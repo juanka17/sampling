@@ -33,21 +33,28 @@
                     <div class="col small-12">
                         <h1>Seguimiento premios</h1>
                     </div>
-                    <div class="col small-5">
+                    <div class="col small-3">
                         <b>Premio</b>
                         <br/>
                         {{redencion.premio}}
                     </div>
+                    
                     <div class="col small-3">
                         <b>Fecha Redencion</b>
                         <br/>
                         {{redencion.fecha_redencion}}
                     </div>
-                    <div class="col small-2">
+                    <div class="col small-3">
                         <b>Puntos</b>
                         <br/>
                         {{redencion.puntos}}
                     </div>
+                    <div class="col-small-1">
+                        <b>Folio</b>
+                        <br />
+                        {{redencion.folio}}
+                    </div> 
+                    <hr>
                     <div class="col small-2">
                         <button class="button alert" onclick="javascript:history.back();">Volver</button>
                     </div>
@@ -59,17 +66,21 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Operación</th>
+                                <th>Operación</th>
                                     <th>Comentario</th>
                                     <th>Referencia</th>
+                                    <th>Ciudad de envio</th>
+                                    <th>Direccion</th>
                                     <th>Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="seguimiento in seguimiento_redencion track by $index">
-                                    <td>{{seguimiento.operacion}}</td>
+                                <td>{{seguimiento.operacion}}</td>
                                     <td>{{seguimiento.comentario}}</td>
                                     <td>{{seguimiento.referencia}}</td>
+                                    <td>{{seguimiento.ciudad_envio}}</td>
+                                    <td>{{seguimiento.direccion_envio}}</td>
                                     <td>{{seguimiento.fecha}}</td>
                                     <td ng-show="seguimiento.operacion == 'Entregado'">
                                         <a class="button" ng-href="encuesta_premio.php?id_redencion={{redencion.folio}}">
