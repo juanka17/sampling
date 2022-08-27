@@ -16,6 +16,66 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
         $scope.ObtenerCategoriaPremios();
     };
 
+    //registrar encuesta klim
+    $scope.CargarEncuestaPremio = function() {
+        var parametros = { catalogo: "encuesta_premio_klim", id_usuario: id_usuario };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaPremio);
+    };
+
+    $scope.MostrarEncuestaPremio = function(data) {
+        if (data.respuestas > 0) {
+            $scope.encuesta_premio_klim = data;
+        }
+        console.log(data);
+    };
+
+    $scope.HabilitarBotonRedencion = function(data) {
+        $scope.respuesta = data;
+        $scope.respuesta[0].numero_pregunta;
+
+        if (numero_pregunta == 1 && respuesta == "Si" || numero_pregunta == 2 && respuesta == "Si" || numero_pregunta == 5 && respuesta == "Entre 5 y 12") {
+            $scope.HabilitarBotonRedencion = true;
+
+        } else {
+            $scope.HabilitarBotonRedencion = false;
+        };
+        console.log($scope.respuesta[0].numero_pregunta);
+    };
+
+    $scope.RegistrarEncuestaPremio = function() {
+        var preguntas_encuesta = Array();
+        $("#encuesta_klim tbody tr").each(function(index, row) {
+            if (index < 9) {
+                var pregunta = {
+                    id_usuario: id_usuario,
+                    numero_pregunta: (index + 1),
+                    respuesta: $(row).find("select").first().val(),
+                    comentario: $(row).find("input").first().val()
+                };
+                preguntas_encuesta.push(pregunta);
+            }
+        });
+
+        var parametros = {
+            catalogo: "encuesta_premio_klim",
+            catalogo_real: "encuesta_premio_klim",
+            lista_datos: preguntas_encuesta,
+            id_usuario: id_usuario
+        };
+
+        $scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.CargarEncuestaPremio);
+    };
+
+    $scope.CantidadRespuestas = function() {
+        var parametros = {
+            catalogo: "cantidad_respuestas",
+            id_usuario: id_usuario
+        };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.CargarEncuestaPremio);
+    };
+
+
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Listado Premios">
@@ -203,6 +263,7 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
     $scope.usuario_en_sesion = usuario_en_sesion;
     $scope.id_premio = id_premio;
     $scope.CargarDatosUsuario();
+    $scope.HabilitarBotonRedencion();
 });
 
 $(function() {

@@ -55,6 +55,12 @@
                             <option value="2931">COCOSETTE</option>
                             <option value="2932">RECETARIO</option>
                             <option value="2933">CREMA DE LECHE</option>
+                            <option value="2934">COFFE MATE</option>
+                            <option value="2935">JUGOSO AL HORNO</option>
+                            <option value="2936">JUGOSO AL SARTEN</option>
+                            <option value="2937">EL RODEO</option>
+                            <option value="2938">KLIM CROCANTE</option>
+                            <option value="2939">SVELTY</option>
                         </select>
                     </div>
                 </div>

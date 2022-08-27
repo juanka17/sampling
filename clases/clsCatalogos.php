@@ -108,6 +108,11 @@ class clsCatalogos
                 $query = Consultas::$consulta_seguimiento_redencion." where seg.id_redencion = ".$parametros->id_redencion;
                 $order = " order by seg.id";
             }; break;
+
+            case "cantidad_respuestas": {
+                $query = "SELECT COUNT(*) AS respuestas FROM encuesta_premio_klim where id_usuario = ".$parametros->id_usuario;
+                $order = " ";
+            }; break;
         
             case "periodos_temporada": {
                 $query = Consultas::$periodos_temporada." where per.id >= 2 ";
@@ -116,6 +121,11 @@ class clsCatalogos
         
             case "encuesta_redencion": {
                 $query = $query." where id_redencion = ".$parametros->id_redencion;
+                $order = " order by id ";
+            }; break;
+
+            case "encuesta_premio_klim": {
+                $query = $query." where id_usuario = ".$parametros->id_usuario;
                 $order = " order by id ";
             }; break;
         

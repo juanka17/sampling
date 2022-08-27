@@ -108,7 +108,7 @@ class Consultas
             inner join temporadas tem on tem.id = per.id_temporada
             inner join usuarios usu on ecu.id_usuario = usu.id
     ";
-    
+     
     public static $consulta_premios = "
         select
             pre.id id_premio,
@@ -169,7 +169,10 @@ class Consultas
                 when pre.id=2933 then concat('SPCl-',red.id)    
                 when pre.id=2934 then CONCAT('SPCF-',red.id)           
                 when pre.id=2935 then CONCAT('SPJH-',red.id)           
-                when pre.id=2936 then CONCAT('SPJS-',red.id)           
+                when pre.id=2936 then CONCAT('SPJS-',red.id)
+                when pre.id=2937 then CONCAT('SPRD-',red.id)
+                when pre.id=2938 then CONCAT('SPKC-',red.id)      
+                when pre.id=2939 then CONCAT('SPRS-',red.id)          
             end folio,
             reg.nombre registra
         from 

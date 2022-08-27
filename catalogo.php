@@ -159,6 +159,13 @@
                                         <br />
                                         {{premio.descripcion}}
                                     </p>
+                                    
+                                    <button class="expanded button" data-open="modal_encuesta_klim"
+                                            ng-click=""
+                                            ng-disabled=""
+                                            ng-show="premio.solo_call == 0 || usuario_en_sesion.id_rol == 2 && premio.id_premio == 2938">
+                                            <i class="fa fa-star"></i> Responda la siguiente encuesta
+                                        </button>
                                 </div>
                             </div>
                             <br />
@@ -218,6 +225,105 @@
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
+    </div>
+
+    <div class="reveal text-center" id="modal_encuesta_klim" data-reveal>
+        <h5>Encuesta klim crocante</h5>
+        <p>Primero deberá responder las preguntas para saber si es apto para la redencion del premio</p>
+        <table class="table" id="encuesta_klim">
+                        <thead>
+                            <tr>
+                                <th>Pregunta</th>
+                                <th>Opciones</th>
+                                <th>Comentarios</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. ¿Tiene hijos?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2. ¿Convive con niños?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. ¿Qué relación tienen con usted?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. ¿Cuántos niños?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5. ¿Qué edades tienen?</td>
+                                <td>
+                                <select class="form-control">
+                                        <option value="Menos de 5">Menos de 5</option>
+                                        <option value="Entre 5 y 12">Entre 5 y 12</option>
+                                        <option value="Más de 12">Más de 12</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6. ¿Quiere participar en las sesiones virtuales?</td>
+                                <td>
+                                    <select class="form-control" value="2">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                      </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">
+                                    <button class="button small expanded" type="button" ng-click="RegistrarEncuestaPremio()">
+                                        Registrar encuesta
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                     <span aria-hidden="true">&times;</span>
+                            </button>
+                             </tr>
+                        </tbody>
+                    </table>
     </div>
 
     <div class="reveal" id="modal_carrito" data-reveal>

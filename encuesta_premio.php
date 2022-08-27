@@ -9,7 +9,7 @@
     <script src="js/foundation-datepicker.js" type="text/javascript"></script>
     <script src="js/locales/foundation-datepicker.es.js" type="text/javascript"></script>
 
-    <script src="interfaces/estados_redencion.js?ver=10" type="text/javascript"></script>
+    <script src="interfaces/estados_redencion.js?ver=11" type="text/javascript"></script>
 
     <script>
         var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
@@ -654,6 +654,94 @@
                                         <option value="Platos cotidianos.">Platos cotidianos.</option>
                                         <option value="Ocasiones especiales.">Ocasiones especiales.</option>
                                         <option value="Ambos">Ambos</option>
+                                      </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">
+                                    <button class="button small expanded" type="button" ng-click="RegistrarEncuestaRedencion()">
+                                        Registrar encuesta
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table" id="pnlEncuesta9" ng-show="encuesta_redencion.length == 0 && redencion.id_premio==2938">
+                        <thead> 
+                            <tr>
+                                <th>Pregunta</th>
+                                <th>Opciones</th>
+                                <th>Comentarios</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. ¿Tiene hijos?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2. ¿Convive con niños?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3. ¿Qué relación tienen con usted?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4. ¿Cuántos niños?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5. ¿Qué edades tienen?</td>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="N/A">N/A</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6. ¿Quiere participar en las sesiones virtuales?</td>
+                                <td>
+                                    <select class="form-control" value="2">
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
                                       </select>
                                 </td>
                                 <td>
