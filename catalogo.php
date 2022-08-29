@@ -4,7 +4,7 @@
 
 <head>
     <?php include 'componentes/componentes_basicos.php'; ?>
-    <script src="interfaces/catalogo.js?fuel=5&fire=3254" type="text/javascript"></script>
+    <script src="interfaces/catalogo.js?fuel=6&fire=3254" type="text/javascript"></script>
     <script>
         var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
         var id_usuario = 0;
@@ -150,7 +150,7 @@
                                     </p>
 
                                     <button class="expanded button" data-open="modal_encuesta_klim" ng-click="" ng-disabled="!HabilitarBotonRedencion" ng-show="premio.solo_call == 0 || usuario_en_sesion.id_rol == 2 && premio.id_premio == 2938">
-                                        <i class="fa fa-star"></i> Responda la siguiente encuesta {{HabilitarBotonRedencion}}
+                                        <i class="fa fa-star"></i> Responda la siguiente encuesta 
                                     </button>
                                 </div>
                             </div>

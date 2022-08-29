@@ -164,8 +164,10 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
         if ($scope.respuesta.length > 0) {
             if (($scope.respuesta[0].respuesta == "Si" || $scope.respuesta[1].respuesta == "Si") && $scope.respuesta[4].respuesta == "Entre 5 y 12") {
                 $scope.HabilitarBotonRedencion = false;
+                alert("Bien! Si puede redimir el premio KLIM CROCANTE");
             } else {
                 $scope.HabilitarBotonRedencion = true;
+                alert("Lo sentimos, NO aplica para redimir el premio KLIM CROCANTE");
             };
             console.log($scope.respuesta[0].numero_pregunta);
         } else {
