@@ -16,32 +16,6 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
         $scope.ObtenerCategoriaPremios();
     };
 
-    //registrar encuesta klim
-    $scope.CargarEncuestaPremio = function() {
-        var parametros = { catalogo: "encuesta_premio_klim", id_usuario: id_usuario };
-        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaPremio);
-    };
-
-    $scope.MostrarEncuestaPremio = function(data) {
-        if (data.respuestas > 0) {
-            $scope.encuesta_premio_klim = data;
-        }
-        console.log(data);
-    };
-
-    $scope.HabilitarBotonRedencion = function(data) {
-        $scope.respuesta = data;
-        $scope.respuesta[0].numero_pregunta;
-
-        if (numero_pregunta == 1 && respuesta == "Si" || numero_pregunta == 2 && respuesta == "Si" || numero_pregunta == 5 && respuesta == "Entre 5 y 12") {
-            $scope.HabilitarBotonRedencion = true;
-
-        } else {
-            $scope.HabilitarBotonRedencion = false;
-        };
-        console.log($scope.respuesta[0].numero_pregunta);
-    };
-
     $scope.RegistrarEncuestaPremio = function() {
         var preguntas_encuesta = Array();
         $("#encuesta_klim tbody tr").each(function(index, row) {
@@ -63,8 +37,12 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
             id_usuario: id_usuario
         };
 
-        $scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.CargarEncuestaPremio);
+        $scope.EjecutarLlamado("catalogos", "RegistraCatalogoMixtoMasivo", parametros, $scope.reiniciar);
     };
+
+    $scope.reiniciar = function() {
+        location.reload(true);
+    }
 
     $scope.CantidadRespuestas = function() {
         var parametros = {
@@ -152,6 +130,7 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
 
         $scope.cantidad_paginas = Math.ceil($scope.premios.length / $scope.items_por_pagina) - 1;
         $scope.SeleccionarPaginaListaVisible(0);
+        $scope.CargarEncuestaPremio();
     };
 
     $scope.range = function(min, max, step) {
@@ -167,9 +146,34 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
         var inicio = $scope.items_por_pagina * index;
         var final = ($scope.items_por_pagina * index) + $scope.items_por_pagina;
         $scope.premios_visibles = $scope.premios.slice(inicio, final);
+
+
     };
 
     // </editor-fold>
+
+    //registrar encuesta klim
+    $scope.CargarEncuestaPremio = function() {
+        var parametros = { catalogo: "encuesta_premio_klim", id_usuario: id_usuario };
+        $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaPremio);
+    };
+
+    $scope.MostrarEncuestaPremio = function(data) {
+        $scope.respuesta = data;
+        console.log($scope.respuesta)
+        if ($scope.respuesta.length > 0) {
+            if (($scope.respuesta[0].respuesta == "Si" || $scope.respuesta[1].respuesta == "Si") && $scope.respuesta[4].respuesta == "Entre 5 y 12") {
+                $scope.HabilitarBotonRedencion = false;
+            } else {
+                $scope.HabilitarBotonRedencion = true;
+            };
+            console.log($scope.respuesta[0].numero_pregunta);
+        } else {
+            $scope.HabilitarBotonRedencion = true;
+        }
+        console.log($scope.HabilitarBotonRedencion)
+
+    };
 
     // <editor-fold defaultstate="collapsed" desc="Lista Carrito">
 
@@ -263,7 +267,7 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
     $scope.usuario_en_sesion = usuario_en_sesion;
     $scope.id_premio = id_premio;
     $scope.CargarDatosUsuario();
-    $scope.HabilitarBotonRedencion();
+
 });
 
 $(function() {

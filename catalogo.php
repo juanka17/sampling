@@ -6,57 +6,57 @@
     <?php include 'componentes/componentes_basicos.php'; ?>
     <script src="interfaces/catalogo.js?fuel=5&fire=3254" type="text/javascript"></script>
     <script>
-    var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
-    var id_usuario = 0;
-    var id_premio = 0;
-    if (typeof getParameterByName("id_usuario") !== 'undefined' && getParameterByName("id_usuario") != "") {
-        id_usuario = getParameterByName("id_usuario");
-    } else {
-        alert("No hay usuario seleccionado.");
-    }
-    if (typeof getParameterByName("id_premio") !== 'undefined' && getParameterByName("id_premio") != "") {
-        id_premio = getParameterByName("id_premio");
-    }
+        var usuario_en_sesion = <?php echo json_encode($_SESSION["usuario"]); ?>;
+        var id_usuario = 0;
+        var id_premio = 0;
+        if (typeof getParameterByName("id_usuario") !== 'undefined' && getParameterByName("id_usuario") != "") {
+            id_usuario = getParameterByName("id_usuario");
+        } else {
+            alert("No hay usuario seleccionado.");
+        }
+        if (typeof getParameterByName("id_premio") !== 'undefined' && getParameterByName("id_premio") != "") {
+            id_premio = getParameterByName("id_premio");
+        }
     </script>
     <style>
-    .card img {
-        height: auto;
-        margin: 0 auto;
-        width: 150px;
-    }
+        .card img {
+            height: auto;
+            margin: 0 auto;
+            width: 150px;
+        }
 
-    .premio .card {
-        border: 1px solid #14679e;
-        border-radius: 26px;
-    }
+        .premio .card {
+            border: 1px solid #14679e;
+            border-radius: 26px;
+        }
 
-    .premio .card .imagen-premio {
-        height: 150px;
-        margin: 0 auto;
-        overflow: hidden;
-    }
+        .premio .card .imagen-premio {
+            height: 150px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
 
-    .premio .card-divider {
-        color: white;
-        background-color: #139ad7;
-        height: 50px;
-        overflow: hidden;
-    }
+        .premio .card-divider {
+            color: white;
+            background-color: #139ad7;
+            height: 50px;
+            overflow: hidden;
+        }
 
-    .premio .nombre-grande {
-        padding: 0.1rem 0.5rem;
-        align-items: center;
-    }
+        .premio .nombre-grande {
+            padding: 0.1rem 0.5rem;
+            align-items: center;
+        }
 
-    .premio .descripcion {
-        height: 100px;
-        margin-bottom: 10px;
-        overflow: hidden;
-    }
+        .premio .descripcion {
+            height: 100px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
 
-    h5 small {
-        color: #0a0a0a;
-    }
+        h5 small {
+            color: #0a0a0a;
+        }
     </style>
 </head>
 
@@ -87,8 +87,7 @@
                 <div class="cell small-12 medium-6 text-center">
                     <label>
                         Nombre del premio
-                        <input ng-model="filtros.nombre" type="text" placeholder="¿Que Premio Buscas?"
-                            ng-change="SeleccionarPremiosVisibles()">
+                        <input ng-model="filtros.nombre" type="text" placeholder="¿Que Premio Buscas?" ng-change="SeleccionarPremiosVisibles()">
                     </label>
                 </div>
 
@@ -116,42 +115,32 @@
                 </div>
                 <div class="cell small-12">
                     <div class="grid-x grid-margin-x">
-                        <div class="cell small-12 medium-4 premio"
-                            ng-repeat="premio in premios_visibles track by $index">
+                        <div class="cell small-12 medium-4 premio" ng-repeat="premio in premios_visibles track by $index">
                             <div class="card">
-                                <div
-                                    class="align-center text-center card-divider {{premio.premio.length > 35 ? 'nombre-grande' : ''}}">
+                                <div class="align-center text-center card-divider {{premio.premio.length > 35 ? 'nombre-grande' : ''}}">
                                     {{premio.premio}}
                                 </div>
                                 <br />
                                 <div class="imagen-premio">
                                     <i>* Imagen de referencia</i>
                                     <br />
-                                    <img ng-src='https://formasestrategicas.com.co/premios/{{premio.id_premio}}.jpg'
-                                        alt="No disponible" onError="this.src='images/premios/replace.png'" />
+                                    <img ng-src='https://formasestrategicas.com.co/premios/{{premio.id_premio}}.jpg' alt="No disponible" onError="this.src='images/premios/replace.png'" />
                                 </div>
                                 <div class="card-section">
-                                    <div class="expanded button-group stacked-for-small"
-                                        ng-show="usuario_en_sesion.id_rol != 3">
+                                    <div class="expanded button-group stacked-for-small" ng-show="usuario_en_sesion.id_rol != 3">
                                         <button class="expanded button hollow">
                                             {{ premio.puntos == premio.puntos_actuales ? premio.puntos : premio.puntos_actuales | number}}
-                                            <span ng-show="premio.puntos != premio.puntos_actuales"
-                                                style="color: red; text-decoration: line-through;">({{premio.puntos}})</span>
+                                            <span ng-show="premio.puntos != premio.puntos_actuales" style="color: red; text-decoration: line-through;">({{premio.puntos}})</span>
                                             Puntos
                                         </button>
-                                        <button class="expanded button" data-open="modal_detalle_premio"
-                                            ng-click="SeleccionarPremio($index)"
-                                            ng-disabled="saldo_disponible < premio.puntos_actuales"
-                                            ng-show="premio.solo_call == 0 || usuario_en_sesion.id_rol == 2">
+                                        <button class="expanded button" data-open="modal_detalle_premio" ng-click="SeleccionarPremio($index)" ng-disabled="HabilitarBotonRedencion && premio.id_premio == 2938">
                                             <i class="fa fa-star"></i> Seleccionar
                                         </button>
-                                        <button class="expanded button" ng-disabled="true"
-                                            ng-show="premio.solo_call == 1 && usuario_en_sesion.id_rol != 2">
+                                        <button class="expanded button" ng-disabled="true" ng-show="premio.solo_call == 1 && usuario_en_sesion.id_rol != 2">
                                             <i class="fa fa-phone"></i> Llamar
                                         </button>
                                     </div>
-                                    <div class="expanded button-group stacked-for-small"
-                                        ng-show="usuario_en_sesion.id_rol == 3">
+                                    <div class="expanded button-group stacked-for-small" ng-show="usuario_en_sesion.id_rol == 3">
                                         <button class="expanded button hollow">{{premio.puntos| number}} Puntos</button>
                                     </div>
                                     <p class="descripcion">
@@ -159,13 +148,10 @@
                                         <br />
                                         {{premio.descripcion}}
                                     </p>
-                                    
-                                    <button class="expanded button" data-open="modal_encuesta_klim"
-                                            ng-click=""
-                                            ng-disabled=""
-                                            ng-show="premio.solo_call == 0 || usuario_en_sesion.id_rol == 2 && premio.id_premio == 2938">
-                                            <i class="fa fa-star"></i> Responda la siguiente encuesta
-                                        </button>
+
+                                    <button class="expanded button" data-open="modal_encuesta_klim" ng-click="" ng-disabled="!HabilitarBotonRedencion" ng-show="premio.solo_call == 0 || usuario_en_sesion.id_rol == 2 && premio.id_premio == 2938">
+                                        <i class="fa fa-star"></i> Responda la siguiente encuesta {{HabilitarBotonRedencion}}
+                                    </button>
                                 </div>
                             </div>
                             <br />
@@ -174,21 +160,17 @@
                 </div>
                 <div class="cell small-12 align-center">
                     <div class="expanded button-group">
-                        <button class="button" ng-disabled="pagina_actual == 0"
-                            ng-click="SeleccionarPaginaListaVisible(pagina_actual - pagina_actual)">
+                        <button class="button" ng-disabled="pagina_actual == 0" ng-click="SeleccionarPaginaListaVisible(pagina_actual - pagina_actual)">
                             INICIO
                         </button>
-                        <button class="button" ng-disabled="pagina_actual == 0"
-                            ng-click="SeleccionarPaginaListaVisible(pagina_actual - 1)">
+                        <button class="button" ng-disabled="pagina_actual == 0" ng-click="SeleccionarPaginaListaVisible(pagina_actual - 1)">
                             <i class="fa fa-backward"></i>
                         </button>
                         <button class="button"> {{pagina_actual + 1}} de {{cantidad_paginas + 1}} </button>
-                        <button class="button" ng-disabled="pagina_actual >= cantidad_paginas"
-                            ng-click="SeleccionarPaginaListaVisible(pagina_actual + 1)">
+                        <button class="button" ng-disabled="pagina_actual >= cantidad_paginas" ng-click="SeleccionarPaginaListaVisible(pagina_actual + 1)">
                             <i class="fa fa-forward"></i>
                         </button>
-                        <button class="button" ng-disabled="pagina_actual >= cantidad_paginas"
-                            ng-click="SeleccionarPaginaListaVisible(pagina_actual + (cantidad_paginas - pagina_actual))">
+                        <button class="button" ng-disabled="pagina_actual >= cantidad_paginas" ng-click="SeleccionarPaginaListaVisible(pagina_actual + (cantidad_paginas - pagina_actual))">
                             FIN
                         </button>
                     </div>
@@ -200,8 +182,7 @@
 
     <div class="reveal text-center" id="modal_detalle_premio" data-reveal>
         <h4>Agregar al carrito</h4>
-        <img ng-src='http://formasestrategicas.com.co/premios/{{premio_seleccionado.id_premio}}.jpg' alt="No disponible"
-            onError="this.src='images/premios/replace.png'" />
+        <img ng-src='http://formasestrategicas.com.co/premios/{{premio_seleccionado.id_premio}}.jpg' alt="No disponible" onError="this.src='images/premios/replace.png'" />
         <h5>
             {{premio_seleccionado.premio}}
             <br />
@@ -217,9 +198,7 @@
             {{premio_seleccionado.descripcion}}
         </p>
 
-        <button class="button" data-open="modal_carrito"
-            ng-show=" premio_seleccionado.solo_call == 0 || usuario_en_sesion.id_rol == 2"
-            ng-click="AgregarAlCarrito()">
+        <button class="button" data-open="modal_carrito" ng-show=" premio_seleccionado.solo_call == 0 || usuario_en_sesion.id_rol == 2" ng-click="AgregarAlCarrito()">
             <i class="fa fa-shopping-basket"></i> Agregar al Carrito
         </button>
         <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -231,99 +210,99 @@
         <h5>Encuesta klim crocante</h5>
         <p>Primero deberá responder las preguntas para saber si es apto para la redencion del premio</p>
         <table class="table" id="encuesta_klim">
-                        <thead>
-                            <tr>
-                                <th>Pregunta</th>
-                                <th>Opciones</th>
-                                <th>Comentarios</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1. ¿Tiene hijos?</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2. ¿Convive con niños?</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3. ¿Qué relación tienen con usted?</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="N/A">N/A</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4. ¿Cuántos niños?</td>
-                                <td>
-                                    <select class="form-control">
-                                        <option value="N/A">N/A</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5. ¿Qué edades tienen?</td>
-                                <td>
-                                <select class="form-control">
-                                        <option value="Menos de 5">Menos de 5</option>
-                                        <option value="Entre 5 y 12">Entre 5 y 12</option>
-                                        <option value="Más de 12">Más de 12</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6. ¿Quiere participar en las sesiones virtuales?</td>
-                                <td>
-                                    <select class="form-control" value="2">
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                      </select>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="text-right">
-                                    <button class="button small expanded" type="button" ng-click="RegistrarEncuestaPremio()">
-                                        Registrar encuesta
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                            <button class="close-button" data-close aria-label="Close modal" type="button">
-                                     <span aria-hidden="true">&times;</span>
-                            </button>
-                             </tr>
-                        </tbody>
-                    </table>
+            <thead>
+                <tr>
+                    <th>Pregunta</th>
+                    <th>Opciones</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. ¿Tiene hijos?</td>
+                    <td>
+                        <select class="form-control">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>2. ¿Convive con niños?</td>
+                    <td>
+                        <select class="form-control">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>3. ¿Qué relación tienen con usted?</td>
+                    <td>
+                        <select class="form-control">
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>4. ¿Cuántos niños?</td>
+                    <td>
+                        <select class="form-control">
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>5. ¿Qué edades tienen?</td>
+                    <td>
+                        <select class="form-control">
+                            <option value="Menos de 5">Menos de 5</option>
+                            <option value="Entre 5 y 12">Entre 5 y 12</option>
+                            <option value="Más de 12">Más de 12</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>6. ¿Quiere participar en las sesiones virtuales?</td>
+                    <td>
+                        <select class="form-control" value="2">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">
+                        <button class="button small expanded" type="button" ng-click="RegistrarEncuestaPremio()">
+                            Registrar encuesta
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="reveal" id="modal_carrito" data-reveal>
@@ -365,8 +344,7 @@
                                 <td>{{premio.premio}}</td>
                                 <td>{{premio.puntos_actuales}}</td>
                                 <td>
-                                    <input type="text" ng-model="premio.comentario"
-                                        placeholder="Descripción del premio EJ: talla o color o número de celular" />
+                                    <input type="text" ng-model="premio.comentario" placeholder="Descripción del premio EJ: talla o color o número de celular" />
                                 </td>
                             </tr>
                         </tbody>
@@ -395,8 +373,7 @@
                 <div class="col small-12">
                     <h4>Confirmar Redenciones</h4>
                 </div>
-                <div class="col small-12"
-                    ng-show="datos_usuario.direccion == '' || datos_usuario.telefono == '' || datos_usuario.ciudad == ''">
+                <div class="col small-12" ng-show="datos_usuario.direccion == '' || datos_usuario.telefono == '' || datos_usuario.ciudad == ''">
                     Debe actualizar sus datos para proceder con la redención
                 </div>
                 <div class="col small-12">
@@ -426,20 +403,16 @@
                                 </td>
                                 <td ng-show="editar_direccion">
                                     <label ng-show="ciudades.length == 0">
-                                        <input type="text" placeholder="Nombre de la ciudad" ng-blur="BuscarCiudad()"
-                                            ng-model="nombre_ciudad" />
+                                        <input type="text" placeholder="Nombre de la ciudad" ng-blur="BuscarCiudad()" ng-model="nombre_ciudad" />
                                     </label>
                                     <label ng-show="ciudades.length > 0">
-                                        <select id="dd_ciudad_usuario" ng-model='nombre_ciudad'
-                                            ng-change="VerificarCambios()">
-                                            <option ng-repeat="ciudad in ciudades track by $index"
-                                                value='{{ciudad.nombre}}'>{{ciudad.nombre}}</option>
+                                        <select id="dd_ciudad_usuario" ng-model='nombre_ciudad' ng-change="VerificarCambios()">
+                                            <option ng-repeat="ciudad in ciudades track by $index" value='{{ciudad.nombre}}'>{{ciudad.nombre}}</option>
                                         </select>
                                     </label>
                                 </td>
                                 <td>
-                                    <button class="button small" ng-show="!editar_direccion"
-                                        ng-click="editar_direccion = true;"><i class="fa fa-edit"></i></button>
+                                    <button class="button small" ng-show="!editar_direccion" ng-click="editar_direccion = true;"><i class="fa fa-edit"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -469,9 +442,7 @@
                         <button class="button" data-close aria-label="Close modal">
                             <i class="fa fa-eye"></i> Seleccionar más Premios
                         </button>
-                        <button class="button success"
-                            ng-disabled="datos_usuario.direccion == '' || datos_usuario.telefono == '' || datos_usuario.ciudad == ''"
-                            data-open="modal_resultado_registro" ng-click="GuardarRedenciones()">
+                        <button class="button success" ng-disabled="datos_usuario.direccion == '' || datos_usuario.telefono == '' || datos_usuario.ciudad == ''" data-open="modal_resultado_registro" ng-click="GuardarRedenciones()">
                             <i class="fa fa-shopping-bag"></i>Guardar y finalizar
                         </button>
                         <br />
@@ -493,8 +464,7 @@
                 <div class="col small-12" ng-show="redenciones_registrada.length == null">
                     <img src="images/loader.gif" style="width: 100%;" />
                 </div>
-                <div class="col small-12" style="max-height: 400px; overflow-y: auto;"
-                    ng-show="redenciones_registrada.length > 0">
+                <div class="col small-12" style="max-height: 400px; overflow-y: auto;" ng-show="redenciones_registrada.length > 0">
                     <h5>Lista de premios</h5>
                     <table>
                         <thead>
@@ -506,8 +476,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="premio in redenciones_registrada track by $index"
-                                ng-show="premio.error == ''">
+                            <tr ng-repeat="premio in redenciones_registrada track by $index" ng-show="premio.error == ''">
                                 <td>{{premio.premio}}</td>
                                 <td>{{premio.puntos}}</td>
                                 <td>{{premio.comentario}}</td>
