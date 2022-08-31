@@ -225,19 +225,6 @@ angular.module('estadosRedencionApp', []).controller('estadosRedencionController
             }
         });
 
-        $("#pnlEncuesta9 tbody tr").each(function(index, row) {
-            if ($scope.redencion.id_premio == 2938) {
-
-                var pregunta = {
-                    id_redencion: id_redencion,
-                    numero_pregunta: (index + 1),
-                    respuesta: $(row).find("select").first().val(),
-                    comentario: $(row).find("input").first().val()
-                };
-                preguntas_encuesta.push(pregunta);
-            }
-        });
-
 
         console.log(preguntas_encuesta);
         var parametros = {
