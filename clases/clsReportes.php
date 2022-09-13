@@ -17,6 +17,7 @@ class clsReportes
             case "encuesta_maggi": $datos = clsReportes::ReporteEncuestaMaggi($parametros);break;
             case "encuesta_vegie": $datos = clsReportes::ReporteEncuestaVeggie($parametros);break;
             case "inventario_lista": $datos = clsReportes::ReporteInventario($parametros);break;
+            case "encuesta_crocante": $datos = clsReportes::ReporteEncuestaCrocante($parametros);break;
         }
         return clsReportes::ProcesarDatos($datos);
     }
@@ -127,6 +128,13 @@ class clsReportes
         $results = clsDDBBOperations::ExecuteSelectNoParams($query);
         return $results;
     }   
+
+    private static function ReporteEncuestaCrocante($parametros)
+    {
+        $query = Consultas::$reporte_encuesta_crocante;
+        $results = clsDDBBOperations::ExecuteSelectNoParams($query);
+        return $results;
+    }
 }
     
 ?>

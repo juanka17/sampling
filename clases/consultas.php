@@ -394,4 +394,28 @@ class Consultas
             FROM usuarios usu
             inner JOIN almacenes alm ON alm.id = usu.id_almacen
     ";
+
+        public static $reporte_encuesta_crocante= "
+        SELECT 
+       ec.id_usuario,
+		 usu.cedula,
+	    usu.nombre,
+	    ec.numero_pregunta,
+  		 case
+		when ec.numero_pregunta = 1 then '¿Tiene hijos?'
+		when ec.numero_pregunta = 2 then '¿Convive con niños?'
+		when ec.numero_pregunta = 3 then '¿Qué relación tienen con usted?'
+		when ec.numero_pregunta = 4 then '¿Cuántos niños?'
+		when ec.numero_pregunta = 5 then '¿Qué edades tienen?'
+		when ec.numero_pregunta = 6 then '¿Quiere participar en las sesiones virtuales?'
+		end pregunta,
+	    ec.respuesta,
+	    ec.comentario,
+	    ec.fecha
+	FROM 
+      encuesta_premio_klim ec
+      		INNER JOIN usuarios usu ON usu.id= ec.id_usuario
+       	  
+			ORDER BY  ec.id_usuario, ec.numero_pregunta;
+        ";
     }

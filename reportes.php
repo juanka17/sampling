@@ -39,6 +39,7 @@
                             <option value="encuesta_klim">Reporte de encuesta Klim</option>
                             <option value="encuesta_maggi">Reporte de encuesta Maggi</option>
                             <option value="encuesta_vegie">Reporte de encuesta Maggi Veggie</option>
+                            <option value="encuesta_crocante">Reporte de encuesta Klim Crocante</option>
                         </select>
                     </label>
                     <div>
