@@ -152,7 +152,7 @@ angular.module('catalogoApp', []).controller('catalogoController', function($sco
 
     // </editor-fold>
 
-    //registrar encuesta klim
+    //registrar encu esta klim
     $scope.CargarEncuestaPremio = function() {
         var parametros = { catalogo: "encuesta_premio_klim", id_usuario: id_usuario };
         $scope.EjecutarLlamado("catalogos", "CargaCatalogo", parametros, $scope.MostrarEncuestaPremio);

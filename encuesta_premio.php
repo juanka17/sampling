@@ -21,7 +21,7 @@
         }
     </script>
 </head>
-
+ 
 <body ng-app="estadosRedencionApp" ng-controller="estadosRedencionController">
     <div id="main_container" class="grid-container off-canvas-content">
         <div class="callout">

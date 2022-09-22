@@ -1,6 +1,6 @@
 <?php include 'componentes/control_sesiones.php'; ?>
 <!doctype html>
-<html class="no-js" lang="en" dir="ltr">
+<html class="no-js" lang="en" dir="ltr"> 
 
 <head>
     <?php include 'componentes/componentes_basicos.php'; ?>
@@ -124,7 +124,7 @@
                                 <div class="imagen-premio">
                                     <i>* Imagen de referencia</i>
                                     <br />
-                                    <img ng-src='https://formasestrategicas.com.co/premios/{{premio.id_premio}}.jpg' alt="No disponible" onError="this.src='images/premios/replace.png'" />
+                                    <img ng-src='' alt="No disponible" onError="this.src='images/premios/replace.png'" />
                                 </div>
                                 <div class="card-section">
                                     <div class="expanded button-group stacked-for-small" ng-show="usuario_en_sesion.id_rol != 3">

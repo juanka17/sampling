@@ -124,7 +124,7 @@ class clsCatalogos
                 $order = " order by id ";
             }; break;
 
-            case "encuesta_premio_klim": {
+            case "encuesta_premio_klim": { 
                 $query = $query." where id_usuario = ".$parametros->id_usuario;
                 $order = " order by id ";
             }; break;
